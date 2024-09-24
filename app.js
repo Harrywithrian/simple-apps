@@ -27,11 +27,17 @@ app.get('/hari', (req, res) => {
 });
 
 app.get('/users', (req, res, next) => {
-  const sql = "SELECT * FROM tb_data ORDER BY id desc"
-  connection.query(sql,(fields) => {
-    res.send(fields)
-  })
+  const sql = "SELECT * FROM tb_data ORDER BY id DESC";
+  connection.query(sql, (error, results) => {
+    if (error) {
+      // If there's an error, pass it to the next middleware or send an error response
+      return next(error); // Or res.status(500).send('Database query failed');
+    }
+    // Send the result to the client
+    res.send(results);
+  });
 });
+
 
 app.listen(process.env.APP_PORT, () => {
   console.log(`Example app listening on port ${process.env.APP_PORT}`)
