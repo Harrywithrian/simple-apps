@@ -29,6 +29,7 @@ app.get('/hari', (req, res) => {
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
   connection.query(sql,(fields) => {
+    res.send(fields)
   })
 });
 
