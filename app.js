@@ -28,12 +28,7 @@ app.get('/hari', (req, res) => {
 
 app.get('/users', (req, res, next) => {
   const sql = "SELECT * FROM tb_data ORDER BY id desc"
-  connection.query(sql,(error, fields) => {
-    if (error) {
-      console.log('error', error)
-    } else {
-      res.send(fields)
-    }
+  connection.query(sql,(fields) => {
   })
 });
 
